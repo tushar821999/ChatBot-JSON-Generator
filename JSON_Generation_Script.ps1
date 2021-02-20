@@ -16,14 +16,15 @@ echo $count_count
 $sum = 0
 
 #$all_topics_count
-$count = 0
+$count_temp = 0
 for($i=0;$i -lt $all_topics_count;$i++){
     $topic = $all_topics | Select-Object -Index $i
     $topic_count = $count | Select-Object -Index $i
     echo $topic_count
     $count++
     for($j=0;$j -lt $topic_count;$j++){
-        $temp_intent = $all_intents | Select-Object -Index $count
+        $temp_intent = $all_intents | Select-Object -Index $count_temp
+        $count_temp = $count_temp+1
         #echo $temp_intent
         $intent_file_name = ".\brain\"+$temp_intent+".md"
         $json_record = ''
@@ -36,7 +37,7 @@ for($i=0;$i -lt $all_topics_count;$i++){
                     $json_record = $json_record + '{"que":"'+$temp_line+'","intent":"'+$temp_intent+'"},'
                 }
             }
-            $final_json_response = "["+$json_record.Substring(0,$json_record.Length-1)+"]"
+            $final_json_response = "["+$json_record.Substring(0,$json_record.Length-1)+"]" | ConvertFrom-Json | ConvertTo-Json
             write $final_json_response | Out-File .\output_json\$topic`_$temp_intent.json -Append
         }
     }
