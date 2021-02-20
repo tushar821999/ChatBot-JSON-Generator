@@ -1,0 +1,11 @@
+## grettings
+- hello
+- good morning
+- good night
+- bye
+- hey_name
+## help
+- help_option
+- help_required
+- help_roaming
+## end of topics
