@@ -34,7 +34,7 @@ foreach($value in $topic_intent_all_data){
 #clear all intents file
 out-file $file_for_intents
 
-# fetch all the intents
+# fetch all the intents from file
 foreach($value in $topic_intent_all_data){
     if($value.StartsWith("- ")){
         $temp_value = $value.Substring(2,$value.Length-2)
